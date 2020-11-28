@@ -1,11 +1,10 @@
 const exec = require('child_process').execSync
 const fs = require('fs')
 const download = require('download')
-const smartReplace = require("./smartReplace");
+const smartReplace = require("../smartReplace");
 
-const SEND_KEY = process.env.SEND_KEY
 const $ = new Env('企鹅阅读');
-const notify = $.isNode() ? require('./sendNotify') : '';
+const notify = $.isNode() ? require('../sendNotify') : '';
 // 公共变量
 
 const Secrets = {
@@ -78,25 +77,13 @@ console.log(`北京时间 (UTC+08)：${new Date(new Date().getTime() + 8 * 60 * 
     }
     var d = new Date(new Date().getTime() + 8 * 60 * 60 * 1000);
     //console.log(d.getHours() +'  '+ d.getMinutes());
-    if (content.includes("今日阅读") && d.getHours()==12 && d.getMinutes()<=20 ) {
+    if (content.includes("今日阅读") && d.getHours()==22 && d.getMinutes()<=20 ) {
         await notify.sendNotify(`${$.name}` + `${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}`, content);
-        console.log(content)
+        //console.log(content)
     } else {
         //await notify.sendNotify(`${$.name}` + `${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}`, content);
         console.log(content)
     }
-
-    /* if(SEND_KEY) {
-        if (content.includes("Cookie") && d.getHours()==16 && d.getMinutes()<=30) {
-            await notify.sendNotify("企鹅阅读-" + new Date().toLocaleDateString(), content);
-            console.log("企鹅阅读-" + content)
-        }else{
-            console.log("企鹅阅读-" + content)
-        }
-    }else{
-        await notify.sendNotify("企鹅阅读-" + new Date().toLocaleDateString(), content);
-        console.log("企鹅阅读-" + content)
-    }*/
 
     //运行完成后，删除下载的文件
     console.log('运行完成后，删除下载的文件\n')
