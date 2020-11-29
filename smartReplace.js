@@ -11,14 +11,6 @@ async function replaceWithSecrets(content, Secrets) {
             //replacements.push({ key: "qqreadsign();", value: "{qqreadsign(); qqreadsign2();}" });
             //replacements.push({ key: "11&&sign.data.videoDoneFlag==0", value: "99" });
         }
-        if (Secrets.QQREAD_COOKIE2) {
-            replacements.push({ key: "$.getdata(qqreadurlKey)", value: JSON.stringify(Secrets.QQREAD_COOKIE2.split("\n")[0]) });
-            replacements.push({ key: "$.getdata(qqreadheaderKey)", value: JSON.stringify(Secrets.QQREAD_COOKIE2.split("\n")[1]) });
-            replacements.push({ key: "$.getdata(qqreadtimeurlKey)", value: JSON.stringify(Secrets.QQREAD_COOKIE2.split("\n")[2]) });
-            replacements.push({ key: "$.getdata(qqreadtimeheaderKey)", value: JSON.stringify(Secrets.QQREAD_COOKIE2.split("\n")[3]) });
-            //replacements.push({ key: "qqreadsign();", value: "{qqreadsign(); qqreadsign2();}" });
-            //replacements.push({ key: "11&&sign.data.videoDoneFlag==0", value: "99" });
-        }
 
         await downloader(content);//检查所需额外js
 
