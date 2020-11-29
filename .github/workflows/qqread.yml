@@ -28,7 +28,7 @@ jobs:
             - name: npm install
               run: |
                   npm install
-                  npm install axios
+                  npm install got axios
             - name: "运行 【企鹅阅读】"
               run: |
                   node qqread.js
