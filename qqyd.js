@@ -8,7 +8,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 // 公共变量
 
 const Secrets = {
-    COOKIE_QQYD: process.env.COOKIE_QQYD,
+    QQREAD_COOKIE: process.env.QQREAD_COOKIE,
     PUSH_KEY: process.env.PUSH_KEY, //server酱推送消息
     BARK_PUSH: process.env.BARK_PUSH, //Bark推送
     TG_BOT_TOKEN: process.env.TG_BOT_TOKEN, //TGBot推送Token
@@ -46,7 +46,7 @@ async function start() {
 //console.log(` 当前执行时间:${new Date().toString()}`);
 console.log(`国际时间 (UTC+00)：${new Date().toLocaleString()}`)
 console.log(`北京时间 (UTC+08)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}\n`)
-    if (!Secrets.COOKIE_QQYD) {
+    if (!Secrets.QQREAD_COOKIE) {
         console.log("请填写 Secrets 后再继续");
         await notify.sendNotify(`${$.name}` + `${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}`, "请填写 Secrets");
         return;
