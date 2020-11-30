@@ -8,11 +8,11 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 // 公共变量
 const Secrets = {
     SyncUrl: process.env.SYNCURL, //签到地址,方便随时变动
-    QQREAD_COOKIE: process.env.QQREAD_COOKIE, //企鹅阅读Cookie
     PUSH_KEY: process.env.PUSH_KEY, //server酱推送消息
     BARK_PUSH: process.env.BARK_PUSH, //Bark推送
     TG_BOT_TOKEN: process.env.TG_BOT_TOKEN, //TGBot推送Token
     TG_USER_ID: process.env.TG_USER_ID, //TGBot推送成员ID
+    QQREAD_COOKIE: process.env.QQREAD_COOKIE, //企鹅阅读ck
 };
 let Cookies = [];
 
@@ -25,12 +25,15 @@ async function downFile() {
 async function changeFiele(content, cookie) {
     //替换各种信息.
     content = content.replace("const notifyInterval=2", `const notifyInterval=2\nconst notify = $.isNode() ? require('./sendNotify') : '';`)
-    content = content.replace("$.msg(jsname,''", "notify.sendNotify(jsname")
+    content = content.replace(/\$\.msg\(jsname,''/g, "notify.sendNotify(jsname")
     content = content.replace("$.getdata(qqreadurlKey)", "\"https://mqqapi.reader.qq.com/mqq/user/init\"")
     content = content.replace("$.getdata(qqreadheaderKey)", JSON.stringify(cookie.split("@")[0]))
     content = content.replace("$.getdata(qqreadtimeurlKey)", JSON.stringify(cookie.split("@")[1]))
     content = content.replace("$.getdata(qqreadtimeheaderKey)", JSON.stringify(cookie.split("@")[2]))
+    //content = content.replace("i<18", "i<3")
 
+    content = content.replace("require('./sendNotify')", "{sendNotify:function(){},serverNotify:function(){},BarkNotify:function(){},tgBotNotify:function(){}}")
+    //console.log(content);
     await fs.writeFileSync('./execute.js', content, 'utf8')
 }
 
@@ -51,8 +54,8 @@ async function executeOneByOne() {
         await changeFiele(content, Cookies[i]);
         console.log("替换变量完毕");
         try {
-            await exec("node execute.js", { stdio: "inherit" });//根据源脚本进行通知
-            //await exec("node execute.js >> result.txt")//根据返回内容判断进行通知
+            //await exec("node execute.js", { stdio: "inherit" });//根据源脚本进行通知
+            await exec("node execute.js >> result.txt")//根据返回内容判断进行通知
         } catch (e) {
             console.log("执行异常:" + e);
         }
@@ -62,7 +65,7 @@ async function executeOneByOne() {
         if (fs.existsSync(path)) {
             result = fs.readFileSync(path, "utf8");
             //console.log(result);
-            msg(result);
+            await msg(result);
         }
         //运行完成后，删除下载的文件
         console.log('运行完成后，删除下载的文件\n')
@@ -71,10 +74,15 @@ async function executeOneByOne() {
 }
 
 async function msg(content) {
+    var reg =/【任务列表】:余额(\d{1,7})金币/g;
+    var gold = parseInt(reg.exec(content)[1].trim());
     let d = new Date(new Date().getTime() + 8 * 60 * 60 * 1000);
     if (d.getHours()==22 && d.getMinutes()<=20 ) {
-        await notify.sendNotify(`${$.name}` + `${d.toLocaleString()}`, content);
-        console.log(content)
+        await notify.sendNotify(`${d.toLocaleString()}`, content);
+        //console.log(content)
+    } else if (gold >= 500000 && d.getHours()>=9 && d.getHours()<=22 ) {
+        await notify.sendNotify(`${d.toLocaleString()}`, content);
+        //console.log(content)
     } else {
         //await notify.sendNotify(`${$.name}` + `${d.toLocaleString()}`, content);
         console.log(content)
