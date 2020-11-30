@@ -8,11 +8,11 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 // 公共变量
 const Secrets = {
     SyncUrl: process.env.SYNCURL, //签到地址,方便随时变动
+    QQREAD_COOKIE: process.env.QQREAD_COOKIE, //企鹅阅读Cookie
     PUSH_KEY: process.env.PUSH_KEY, //server酱推送消息
     BARK_PUSH: process.env.BARK_PUSH, //Bark推送
     TG_BOT_TOKEN: process.env.TG_BOT_TOKEN, //TGBot推送Token
     TG_USER_ID: process.env.TG_USER_ID, //TGBot推送成员ID
-    QQREAD_COOKIE: process.env.QQREAD_COOKIE, //企鹅阅读ck
 };
 let Cookies = [];
 
