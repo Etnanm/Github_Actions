@@ -24,21 +24,23 @@ async function downFile() {
 
 async function changeFiele(content, cookie) {
     //替换各种信息.
+    content = content.replace(/console\.log\(.*?脚本执行时间.*?=========\\n`\)/, "")
     content = content.replace("const notifyInterval=2", `const notifyInterval=2\nconst notify = $.isNode() ? require('./sendNotify') : '';`)
-    content = content.replace(/\$\.msg\(jsname,''/g, "notify.sendNotify(jsname")
+    content = content.replace(/\$\.msg\(jsname,''/g, "notify.sendNotify('企鹅阅读'")
     content = content.replace("$.getdata(qqreadurlKey)", "\"https://mqqapi.reader.qq.com/mqq/user/init\"")
     content = content.replace("$.getdata(qqreadheaderKey)", JSON.stringify(cookie.split("@")[0]))
     content = content.replace("$.getdata(qqreadtimeurlKey)", JSON.stringify(cookie.split("@")[1]))
     content = content.replace("$.getdata(qqreadtimeheaderKey)", JSON.stringify(cookie.split("@")[2]))
     //content = content.replace("i<18", "i<3")
-
-    content = content.replace("require('./sendNotify')", "{sendNotify:function(){},serverNotify:function(){},BarkNotify:function(){},tgBotNotify:function(){}}")
+    
+    //替换源脚本中推送函数阻止推送
+    content = content.replace("require('./sendNotify')", "{sendNotify:function(){},serverNotify:function(){},BarkNotify:function(){},tgBotNotify:function(){},ddBotNotify:function(){},iGotNotify:function(){}}")
     //console.log(content);
     await fs.writeFileSync('./execute.js', content, 'utf8')
 }
 
 async function deleteFile(path) {
-    // 查看文件result.txt是  否存在,如果存在,先删除
+    // 查看文件result.txt是否存在,如果存在,先删除
     const fileExists = await fs.existsSync(path);
     // console.log('fileExists', fileExists);
     if (fileExists) {
@@ -72,27 +74,37 @@ async function executeOneByOne() {
         await deleteFile(path);
     }
 }
-
+/*
+async function download_notify() {
+    let response = await axios.get("https://github.com/lxk0301/jd_scripts/raw/master/sendNotify.js");
+    let fcontent = response.data;
+    await fs.writeFileSync("./sendNotify.js", fcontent, "utf8");
+    console.log("下载通知代码完毕");
+}
+*/
 async function msg(content) {
+    content = content.replace(/(^\n*)|(\n*$)/g, "")
     var reg =/【任务列表】:余额(\d{1,7})金币/g;
     var gold = parseInt(reg.exec(content)[1].trim());
     let d = new Date(new Date().getTime() + 8 * 60 * 60 * 1000);
-    if (d.getHours()==22 && d.getMinutes()<=20 ) {
-        await notify.sendNotify(`${d.toLocaleString()}`, content);
-        //console.log(content)
-    } else if (gold >= 500000 && d.getHours()>=9 && d.getHours()<=22 ) {
-        await notify.sendNotify(`${d.toLocaleString()}`, content);
-        //console.log(content)
+    console.log('--------------------');
+    console.log(content);
+    console.log('--------------------');
+    if (d.getHours()==8 && d.getMinutes()<=21) {
+        await notify.sendNotify(`${d.toLocaleString('chinese',{hour12:false})}`, content);
+    } else if (gold >= 1000000 && d.getHours()>=9 && d.getHours()<=22) {
+        await notify.sendNotify(`${d.toLocaleString('chinese',{hour12:false})}`, content);
+    } else if (content.indexOf("Error") > 0) {
+        await notify.sendNotify(`${d.toLocaleString('chinese',{hour12:false})}`, content);
     } else {
-        //await notify.sendNotify(`${$.name}` + `${d.toLocaleString()}`, content);
-        console.log(content)
+        //await notify.sendNotify(`${d.toLocaleString('chinese',{hour12:false})}`, content);
     }
 }
 
 async function start() {
     //console.log(`当前执行时间:${new Date().toString()}`);
-    console.log(`国际时间 (UTC+00)：${new Date().toLocaleString()}`)
-    console.log(`北京时间 (UTC+08)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}\n`)
+    console.log(`国际时间 (UTC+00)：${new Date().toLocaleString('chinese',{hour12:false})}`)
+    console.log(`北京时间 (UTC+08)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString('chinese',{hour12:false})}\n`)
     if (!Secrets.QQREAD_COOKIE) {
         console.log("请填写 QQREAD_COOKIE 后在继续");
         return;
