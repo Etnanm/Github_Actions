@@ -128,7 +128,7 @@ def qqreadtodaygift(headers, sec):
 def qqreadaddtime(headers, addtimeurl):
     """上传阅读时长"""
     sectime = random.randint(TIME*60*1000, (TIME+1)*60*1000)
-    findtime = re.compile(r'readTime=(.*?)&')
+    findtime = re.compile(r'readTime=(.*?)&read_')
     #findtime1 = re.compile(r'readTime%22%3A(.*?)%2C')
     url = re.sub(findtime.findall(addtimeurl)[
                  0], str(sectime), str(addtimeurl))
@@ -173,8 +173,8 @@ def main():
         task_data = qqreadtask(secrets[0])
         mytask_data = qqreadmytask(secrets[0])
 
-        tz += f"========== {gettime()} =========\n"
-        tz += f"============= 📣系统通知📣 =============\n"
+        tz += f"=== {gettime()} ===\n"
+        tz += f"=== 📣系统通知📣 ===\n"
         tz += f"【用户信息】{info_data['user']['nickName']}\n"
         tz += f"【账户余额】{task_data['user']['amount']}金币\n"
         tz += f"【今日阅读】{todaytime_data}分钟\n"
@@ -218,10 +218,12 @@ def main():
                     if todaygift_data['amount'] > 0:
                         tz += f"【阅读金币1】获得{todaygift_data['amount']}金币\n"
                 if todaytime_data >= 5 and todaytime_data < 30:
+                    time.sleep(2)
                     todaygift_data = qqreadtodaygift(secrets[0], 300)
                     if todaygift_data['amount'] > 0:
                         tz += f"【阅读金币2】获得{todaygift_data['amount']}金币\n"
                 if todaytime_data >= 30:
+                    time.sleep(2)
                     todaygift_data = qqreadtodaygift(secrets[0], 1800)
                     if todaygift_data['amount'] > 0:
                         tz += f"【阅读金币3】获得{todaygift_data['amount']}金币\n"
@@ -245,7 +247,7 @@ def main():
                 tz += "【周时长奖励】已全部领取\n"
 
         if task_data['treasureBox']['videoDoneFlag'] == 0:
-            time.sleep(8)
+            time.sleep(6)
             box2_data = qqreadbox2(secrets[0])
             if box2_data['code'] == 0:
                 tz += f"【宝箱翻倍】获得{box2_data['data']['amount']}金币\n"
