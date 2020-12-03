@@ -27,7 +27,7 @@ jobs:
                   node-version: 10.x
             - name: npm install
               run: |
-                  npm install got tough-cookie axios
+                  npm install
             - name: "运行 【企鹅读书】2"
               run: |
                   node qqread.js
