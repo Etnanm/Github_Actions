@@ -19,7 +19,6 @@ jobs:
       - name: Checkout
         run: |
           git clone https://github.com/water008/qqread.git ~/qqread
-        uses: actions/checkout@v2
       - name: 'Set up Python'
         uses: actions/setup-python@v1
         with:
