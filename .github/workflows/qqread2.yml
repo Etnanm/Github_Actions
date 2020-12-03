@@ -30,7 +30,7 @@ jobs:
                   npm install
             - name: "运行 【企鹅读书】2"
               run: |
-                  node qqread2.js
+                  node qqread.js
               env:
                   PUSH_KEY: ${{ secrets.PUSH_KEY }}
                   BARK_PUSH: ${{ secrets.BARK_PUSH }}
