@@ -10,7 +10,7 @@ on:
     watch:
         types: [started]
     repository_dispatch:
-        types: qeread2
+        types: qqread2
 
 jobs:
     build:
