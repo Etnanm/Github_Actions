@@ -27,9 +27,9 @@ jobs:
       - name: '运行【企鹅读书】py' 
         run: python3 qqread.py 
         env:
-            QQREADHEADERS: ${{ secrets.QQREADHEADERS }}
-            QQREADTIMEURL: ${{ secrets.QQREADTIMEURL }}
-            QQREADTIMEHEADERS: ${{ secrets.QQREADTIMEHEADERS }}
+            QQREADHEADERS: ${{ secrets.QQREAD_HEADER }}
+            QQREADTIMEURL: ${{ secrets.QQREAD_TIMEURL }}
+            QQREADTIMEHEADERS: ${{ secrets.QQREAD_TIMEHD }}
             NOTIFYTYPE: ${{ secrets.NOTIFYTYPE }}
             NOTIFYCFG: ${{ secrets.NOTIFYCFG }}
             SCKEY: ${{ secrets.SCKEY }}
