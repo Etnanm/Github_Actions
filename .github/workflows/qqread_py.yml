@@ -8,6 +8,8 @@ on:
     - cron: '*/5 * * * *'
   watch:
     types: [started]
+  repository_dispatch:
+        types: qeread_py
 
 jobs:
   build:
