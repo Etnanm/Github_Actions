@@ -17,6 +17,8 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
       - name: Checkout
+        run: |
+          git clone https://github.com/water008/qqread.git ~/qqread
         uses: actions/checkout@v2
       - name: 'Set up Python'
         uses: actions/setup-python@v1
@@ -25,7 +27,9 @@ jobs:
       - name: 'Install requirements'
         run: pip install -r ./requirements.txt 
       - name: '运行【企鹅读书】py' 
-        run: python3 qqread.py 
+        run: |
+          cd ~/qqread
+          python3 qqread.py 
         env:
             QQREADHEADERS: ${{ secrets.QQREAD_HEADER }}
             QQREADTIMEURL: ${{ secrets.QQREAD_TIMEURL }}
