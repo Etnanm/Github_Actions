@@ -18,7 +18,6 @@ jobs:
         QQREAD_HEADER: ${{ secrets.QQREAD_HEADER }}
         QQREAD_TIMEURL: ${{ secrets.QQREAD_TIMEURL }}
         QQREAD_TIMEHD: ${{ secrets.QQREAD_TIMEHD }}
-        
     steps:
       - name: Checkout
         run: |
