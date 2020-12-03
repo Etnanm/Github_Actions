@@ -2,17 +2,17 @@ const exec = require("child_process").execSync;
 const fs = require("fs");
 const axios = require("axios");
 
-const $ = new Env('企鹅阅读');
-const notify = $.isNode() ? require('../sendNotify') : '';
+const $ = new Env('企鹅读书');
+const notify = $.isNode() ? require('./sendNotify') : '';
 
 // 公共变量
 const Secrets = {
     SyncUrl: process.env.SYNCURL, //签到地址,方便随时变动
+    QQREAD_COOKIE: process.env.QQREAD_COOKIE, //企鹅读书Cookie
     PUSH_KEY: process.env.PUSH_KEY, //server酱推送消息
     BARK_PUSH: process.env.BARK_PUSH, //Bark推送
     TG_BOT_TOKEN: process.env.TG_BOT_TOKEN, //TGBot推送Token
     TG_USER_ID: process.env.TG_USER_ID, //TGBot推送成员ID
-    COOKIE_QEYD: process.env.COOKIE_QEYD, //企鹅阅读ck
 };
 let Cookies = [];
 
@@ -107,15 +107,15 @@ async function start() {
     //console.log(`当前执行时间:${new Date().toString()}`);
     console.log(`国际时间 (UTC+00)：${new Date().toLocaleString('chinese',{hour12:false})}`)
     console.log(`北京时间 (UTC+08)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString('chinese',{hour12:false})}\n`)
-    if (!Secrets.COOKIE_QEYD) {
-        console.log("请填写 COOKIE_QEYD 后在继续");
+    if (!Secrets.QQREAD_COOKIE) {
+        console.log("请填写 QQREAD_COOKIE 后在继续");
         return;
     }
     if (!Secrets.SyncUrl) {
         console.log("请填写 SYNCURL 后在继续");
         return;
     }
-    Cookies = Secrets.COOKIE_QEYD.split("\n");
+    Cookies = Secrets.QQREAD_COOKIE.split("\n");
     console.log(`当前共${Cookies.length}个账号需要执行`);
     // 下载最新代码
     await downFile();
