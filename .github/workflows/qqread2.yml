@@ -17,26 +17,20 @@ jobs:
         runs-on: ubuntu-latest
         if: github.event.repository.owner.id == github.event.sender.id
         env:
-           COOKIE_QEYD: ${{ secrets.QQREAD_COOKIE }}
+            QQREAD_COOKIE: ${{ secrets.QQREAD_COOKIE }}
             SYNCURL: https://raw.githubusercontent.com/ziye12/JavaScript/master/qqread.js
         steps:
-            - name: Checkout
-              run: |
-                 git clone https://github.com/qhq/Self.git ~/Self
-            - name: Use Node.js 12.x
+            - uses: actions/checkout@v1
+            - name: Use Node.js 10.x
               uses: actions/setup-node@v1
               with:
-                  node-version: 12.x
+                  node-version: 10.x
             - name: npm install
-              if: env.COOKIE_QEYD
               run: |
-                  cd ~/Self
                   npm install
             - name: "运行 【企鹅读书】2"
-              if: env.COOKIE_QEYD
               run: |
-                  cd ~/Self
-                  node Scripts/qeyd_replace.js
+                  node qqread2.js
               env:
                   PUSH_KEY: ${{ secrets.PUSH_KEY }}
                   BARK_PUSH: ${{ secrets.BARK_PUSH }}
