@@ -1,38 +1,34 @@
 const $ = new Env('京东互助码')
 const shareCodes = [
     {
-        name: "186",
-        zd: "olmijoxgmjutyskl4hhoeibiavu3pkou3keebla",
-        nc: "d33c23dbb2c4455e88d0e2de55e09afc",
-        mc: "MTAxODc2NTEzOTAwMDAwMDAyMDk1MDY0NQ==",
-        dc: "P04z54XCjVWnYaS5m9cZ2as2H5Ol29n6ShK72c",
+        name: "Lexho_",
+        bean: "olmijoxgmjutyskl4hhoeibiavu3pkou3keebla",
+        farm: "d33c23dbb2c4455e88d0e2de55e09afc",
+        pet: "MTAxODc2NTEzOTAwMDAwMDAyMDk1MDY0NQ==",
+        ddfactory: "P04z54XCjVWnYaS5m9cZ2as2H5Ol29n6ShK72c",
+        jxfactory: "MTAxODc2NTEzNDAwMDAwMDAyMjIzNjYyMQ==",
     },
     {
-        name: "177",
-        zd: "rxggow4kdwppbjuyjdvliwgahkbsbgemalhzlhy",
-        nc: "e4f17ec8e76543e39ff62eab878b62d5",
-        mc: "MTAxODc2NTEzNDAwMDAwMDAyMjIzNjYyMQ==",
-        dc: "P04z54XCjVWnYaS5m9cZxWQvSQQ0gDQIrS_hg",
+        name: "Lexho-",
+        bean: "rxggow4kdwppbjuyjdvliwgahkbsbgemalhzlhy",
+        farm: "e4f17ec8e76543e39ff62eab878b62d5",
+        pet: "MTAxODc2NTEzNDAwMDAwMDAyMjIzNjYyMQ==",
+        ddfactory: "P04z54XCjVWnYaS5m9cZxWQvSQQ0gDQIrS_hg",
+        jxfactory: "MTAxODc2NTEzNDAwMDAwMDAyMjIzNjYyMQ==",
     },
-    {
-        name: "199",
-        zd: "qmnmamd3ukiwrd53w4fjmpmb6c7yyogrbfj2rry",
-        nc: "eedcce41797c4d53aeed45ca3afab72d",
-        mc: "MTAxODc2NTEzNTAwMDAwMDAyMjIzNjM3NQ==",
-        dc: "P04z54XCjVWnYaS5m9cZxm8hD0t3Asnpp0l_g",
-    }
 ];
 $.result = [];
 let s = 500 //各数据接口延迟
 let message = '';
 !(async () => {
     for (let i = 0; i < shareCodes.length; i++) {
-        const { name, zd, nc, mc, dc } = shareCodes[i];
+        const { name, bean, farm, pet, ddfactory, jxfactory } = shareCodes[i];
         message += `${name}：`;
-        zd && await createShare('bean',zd)// 种豆得豆
-        nc && await createShare('farm',nc)// 京东农场
-        mc && await createShare('pet',mc)// 京东萌宠
-        dc && await createShare('ddfactory',dc)// 东东工厂
+        bean && await createShare('bean',bean)// 种豆得豆
+        farm && await createShare('farm',farm)// 京东农场
+        pet && await createShare('pet',pet)// 京东萌宠
+        ddfactory && await createShare('ddfactory',ddfactory)// 东东工厂
+        jxfactory && await createShare('jxfactory',jxfactory)// 京喜工厂
         message += '\n';
     }
     await showMsg()
@@ -70,7 +66,10 @@ function createShare(type,share) {
                         message += `萌宠 ${msg} | `;
                         break;
                     case 'ddfactory':
-                        message += `东厂 ${msg}`;
+                        message += `东厂 ${msg} | `;
+                        break;
+                    case 'jxfactory':
+                        message += `喜厂 ${msg} | `;
                         break;
                     default:
                         break;
