@@ -6,36 +6,36 @@ name: 企鹅读书2
 on:
     workflow_dispatch:
     schedule:
-        - cron: "*/5 * * * *"
+      - cron: "*/5 * * * *"
     watch:
-        types: [started]
+      types: [started]
     repository_dispatch:
-        types: qqread2
+      types: qqread2
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        if: github.event.repository.owner.id == github.event.sender.id
-        env:
-            QQREAD_COOKIE: ${{ secrets.QQREAD_COOKIE }}
-            SYNCURL: https://raw.githubusercontent.com/ziye12/JavaScript/master/qqread.js
-        steps:
-            - uses: actions/checkout@v1
-            - name: Use Node.js 10.x
-              uses: actions/setup-node@v1
-              with:
-                  node-version: 10.x
-            - name: npm install
-              run: |
-                  npm install
-            - name: "运行 【企鹅读书】2"
-              run: |
-                  node qqread.js
-              env:
-                  PUSH_KEY: ${{ secrets.PUSH_KEY }}
-                  BARK_PUSH: ${{ secrets.BARK_PUSH }}
-                  BARK_SOUND: ${{ secrets.BARK_SOUND }}
-                  TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-                  TG_USER_ID: ${{ secrets.TG_USER_ID }}
-                  DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
-                  DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
+  build:
+      runs-on: ubuntu-latest
+      if: github.event.repository.owner.id == github.event.sender.id
+      env:
+          QQREAD_COOKIE: ${{ secrets.QQREAD_COOKIE }}
+          SYNCURL: https://raw.githubusercontent.com/ziye12/JavaScript/master/qqread.js
+      steps:
+          - uses: actions/checkout@v1
+          - name: Use Node.js 10.x
+            uses: actions/setup-node@v1
+            with:
+              node-version: 10.x
+          - name: npm install
+            run: |
+              npm install
+          - name: "运行 【企鹅读书】2"
+            run: |
+              node qqread.js
+            env:
+                PUSH_KEY: ${{ secrets.PUSH_KEY }}
+                BARK_PUSH: ${{ secrets.BARK_PUSH }}
+                BARK_SOUND: ${{ secrets.BARK_SOUND }}
+                TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+                TG_USER_ID: ${{ secrets.TG_USER_ID }}
+                DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
+                DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
