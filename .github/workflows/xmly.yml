@@ -9,7 +9,7 @@ on:
   watch:
     types: [started]
   repository_dispatch:
-        types: xmly
+    types: xmly
 
 jobs:
   build:
