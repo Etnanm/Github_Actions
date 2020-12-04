@@ -2,19 +2,19 @@ const $ = new Env('京东互助码')
 const shareCodes = [
     {
         name: "Lexho_",
-        bean: "olmijoxgmjutyskl4hhoeibiavu3pkou3keebla",
-        farm: "d33c23dbb2c4455e88d0e2de55e09afc",
-        pet: "MTAxODc2NTEzOTAwMDAwMDAyMDk1MDY0NQ==",
-        ddfactory: "P04z54XCjVWnYaS5m9cZ2as2H5Ol29n6ShK72c",
-        jxfactory: "MTAxODc2NTEzNDAwMDAwMDAyMjIzNjYyMQ==",
+        bean: "e7lhibzb3zek35bt6ar3hd2lpxx2oqexvoj2jhq",
+        farm: "b0990fd937714b70908cba48f80e8e77",
+        pet: "MTAxODc2NTEzMjAwMDAwMDAzMzQ5ODU4NQ==",
+        ddfactory: "P04z54XCjVWnYaS5m9cZ2T_3ylJl9LPs6uHTFI",
+        jxfactory: "V4uvR_rnNSs7zpVsGoNEsQ==",
     },
     {
         name: "Lexho-",
-        bean: "rxggow4kdwppbjuyjdvliwgahkbsbgemalhzlhy",
-        farm: "e4f17ec8e76543e39ff62eab878b62d5",
-        pet: "MTAxODc2NTEzNDAwMDAwMDAyMjIzNjYyMQ==",
-        ddfactory: "P04z54XCjVWnYaS5m9cZxWQvSQQ0gDQIrS_hg",
-        jxfactory: "MTAxODc2NTEzNDAwMDAwMDAyMjIzNjYyMQ==",
+        bean: "gvr546hc3bostpdhmbu7beqw4kw3soki7bzr4oa",
+        farm: "640920a518654da49e6e012216823f15",
+        pet: "MTE1NDQ5OTIwMDAwMDAwNDE2MzU3ODE=",
+        ddfactory: "P04z54XCjVWnYaS5jQPDGH633VPlDyvUcpdeT10",
+        jxfactory: "Lmdc1N_n8GoD4P4u89JboDSsIpEKy0Ihw2hzPAmmFXA=",
     },
 ];
 $.result = [];
@@ -57,19 +57,19 @@ function createShare(type,share) {
                 }
                 switch (type) {
                     case 'bean':
-                        message += `种豆 ${msg} | `;
+                        message += `种豆得豆 ${msg} | `;
                         break;
                     case 'farm':
-                        message += `农场 ${msg} | `;
+                        message += `东东农场 ${msg} | `;
                         break;
                     case 'pet':
-                        message += `萌宠 ${msg} | `;
+                        message += `东东萌宠 ${msg} | `;
                         break;
                     case 'ddfactory':
-                        message += `东厂 ${msg} | `;
+                        message += `东东工厂 ${msg} | `;
                         break;
                     case 'jxfactory':
-                        message += `喜厂 ${msg} | `;
+                        message += `京喜工厂 ${msg} | `;
                         break;
                     default:
                         break;
