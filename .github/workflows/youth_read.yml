@@ -10,7 +10,7 @@ on:
   watch:
     types: started
   repository_dispatch:
-        types: youth_read
+    types: youth_read
 
 jobs:
   build:
