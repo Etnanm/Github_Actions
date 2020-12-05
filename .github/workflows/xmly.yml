@@ -31,9 +31,9 @@ jobs:
           cd ~/xmly_speed
           python3 xmly_speed.py 
         env:
-            XMLY_SPEED_COOKIE: ${{ secrets.XMLY_SPEED_COOKIE }}
-            # XMLY_ACCUMULATE_TIME: ${{ secrets.XMLY_ACCUMULATE_TIME }}
-            BARK: ${{ secrets.BARK }}
-            SCKEY: ${{ secrets.SCKEY }}
-            TG_BOT_TOKEN: ${{secrets.TG_BOT_TOKEN}}
-            TG_USER_ID:  ${{secrets.TG_USER_ID}}
+          XMLY_SPEED_COOKIE: ${{ secrets.XMLY_SPEED_COOKIE }}
+        # XMLY_ACCUMULATE_TIME: ${{ secrets.XMLY_ACCUMULATE_TIME }}
+          BARK: ${{ secrets.BARK }}
+          SCKEY: ${{ secrets.SCKEY }
+          TG_BOT_TOKEN: ${{secrets.TG_BOT_TOKEN}}
+          TG_USER_ID:  ${{secrets.TG_USER_ID}}
