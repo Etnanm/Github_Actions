@@ -15,6 +15,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
+    env:		
+      QQ_READ_HEADER_VAL: ${{ secrets.QQREAD_HEADER }}		
+      QQ_READ_TIME_URL_VAL: ${{ secrets.QQREAD_TIMEURL }}		
+      QQ_READ_TIME_HEADER_VAL: ${{ secrets.QQREAD_TIMEHD }}
     steps:
       - name: Checkout
         if: env.QQ_READ_HEADER_VAL && env.QQ_READ_TIME_URL_VAL && env.QQ_READ_TIME_HEADER_VAL
