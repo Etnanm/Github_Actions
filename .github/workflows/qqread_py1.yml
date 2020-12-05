@@ -1,0 +1,35 @@
+# This is a basic workflow to help you get started with Actions
+
+name: 企鹅读书py1
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
+  watch:
+    types: [started]
+  repository_dispatch:
+    types: qqread_py1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+      - name: Checkout
+        run: |
+          git clone https://github.com/TNanko/Scripts.git ~/Scripts
+      - name: 'Set up Python'
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: 'Install requirements'
+        run: |
+          cd ~/qqread
+          pip install -r ./requirements.txt 
+      - name: '运行【企鹅读书】py' 
+        run: |
+          cd ~/Scripts
+          python3 sripts/qq_read.py 
+        env:
+          CONFIG: ${{ secrets.CONFIG }}
