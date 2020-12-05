@@ -35,6 +35,7 @@ jobs:
           npm install
       - name: "运行 【企鹅阅读】2"
         run: |
+          cd ~/Self
           node Scripts/qeyd_replace.js
         env:
           QQREAD_COOKIE: ${{ secrets.QQREAD_COOKIE }}
