@@ -40,6 +40,6 @@ jobs:
         - YWSESSION: yxj9enwgm75f3d3ygsches7j5m0859qc
           COOKIE: ywguid=2899787517;ywkey=yw0efZgybx3K;platform=ios;channel=mqqmina;mpVersion=0.30.0
           BOOK_URL: https://mqqapi.reader.qq.com/mqq/addReadTimeWithBid?scene=1132&refer=-1&bid=26721432&readTime=3838&read_type=0&conttype=1&read_status=0&chapter_info=%5B%7B%221%22%3A%7B%22readTime%22%3A3838%2C%22pay_status%22%3A0%7D%7D%5D&sp=-1
-#       - YWSESSION
+#       - YWSESSION:
 #         COOKIE:
 #         BOOK_URL:
