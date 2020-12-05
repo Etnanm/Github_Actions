@@ -16,9 +16,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
-    env:
-        QQREAD_COOKIE: ${{ secrets.QQREAD_COOKIE }}
-        SYNCURL: https://raw.githubusercontent.com/ziye12/JavaScript/master/qqread.js
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js 10.x
@@ -32,6 +29,8 @@ jobs:
         run: |
           node qqread.js
         env:
+          QQREAD_COOKIE: ${{ secrets.QQREAD_COOKIE }}
+          SYNCURL: https://raw.githubusercontent.com/ziye12/JavaScript/master/qqread.js
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           BARK_SOUND: ${{ secrets.BARK_SOUND }}
