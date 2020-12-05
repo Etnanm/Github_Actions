@@ -32,12 +32,12 @@ jobs:
           cd ~/qqread
           python3 qqread.py 
         env:
-            QQREADHEADERS: ${{ secrets.QQREAD_HEADER }}
-            QQREADTIMEURL: ${{ secrets.QQREAD_TIMEURL }}
-            QQREADTIMEHEADERS: ${{ secrets.QQREAD_TIMEHD }}
-            NOTIFYTYPE: ${{ secrets.NOTIFYTYPE }}
-            NOTIFYCFG: ${{ secrets.NOTIFYCFG }}
-            SCKEY: ${{ secrets.SCKEY }}
-            BARK: ${{ secrets.BARK }}
-            TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-            TG_USER_ID: ${{ secrets.TG_USER_ID }}
+          QQREADHEADERS: ${{ secrets.QQREAD_HEADER }}
+          QQREADTIMEURL: ${{ secrets.QQREAD_TIMEURL }}
+          QQREADTIMEHEADERS: ${{ secrets.QQREAD_TIMEHD }}
+          NOTIFYTYPE: ${{ secrets.NOTIFYTYPE }}
+          NOTIFYCFG: ${{ secrets.NOTIFYCFG }}
+          SCKEY: ${{ secrets.SCKEY }}
+          BARK: ${{ secrets.BARK }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_USER_ID: ${{ secrets.TG_USER_ID }}
