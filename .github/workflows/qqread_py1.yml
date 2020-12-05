@@ -32,4 +32,4 @@ jobs:
           cd ~/Scripts
           python3 sripts/qq_read.py 
         env:
-          CONFIG: ${{ secrets.CONFIG }}
+          CONFIG: ('./config.yam.example ')
