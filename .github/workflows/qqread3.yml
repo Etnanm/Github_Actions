@@ -10,7 +10,7 @@ on:
   watch:
     types: started
   repository_dispatch:
-    types: qqread1
+    types: qqread3
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -43,7 +43,7 @@ jobs:
           cd ~/jd_scripts
           git checkout master
           npm install
-      - name: '运行 【企鹅读书】1'
+      - name: '运行 【企鹅读书】3'
         if: env.QQ_READ_HEADER_VAL && env.QQ_READ_TIME_URL_VAL && env.QQ_READ_TIME_HEADER_VAL
         run: |
           cd ~/jd_scripts/backUp
