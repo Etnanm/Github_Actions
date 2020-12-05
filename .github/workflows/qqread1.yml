@@ -17,16 +17,20 @@ jobs:
       runs-on: ubuntu-latest
       if: github.event.repository.owner.id == github.event.sender.id
       steps:
-        - uses: actions/checkout@v1
+       - name: Checkout
+         run: |
+           git clone https://github.com/Lexho1/Actions.git ~/Actions
         - name: Use Node.js 12.x
           uses: actions/setup-node@v1
           with:
             node-version: 12.x
         - name: npm install
           run: |
+            cd ~/Actions
             npm install
         - name: "运行 【企鹅读书】1"
           run: |
+            cd ~/Actions
             node onlyOneExecute.js
           env:
             SYNCURL: https://github.com/ziye12/JavaScript/raw/master/Task/qqreads.js
