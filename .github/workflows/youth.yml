@@ -16,6 +16,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
+    env:		
+      YOUTH_HEADER: ${{ secrets.YOUTH_HEADER }}		
+      YOUTH_ARTBODY: ${{ secrets.YOUTH_ARTBODY }}		
+      YOUTH_REDBODY: ${{ secrets.YOUTH_REDBODY }}		
+      YOUTH_TIME: ${{ secrets.YOUTH_TIME }}
     steps:
       - name: Checkout
         run: |
@@ -35,10 +40,6 @@ jobs:
           cd ~/Scripts
           node Task/youth.js
         env:
-          YOUTH_HEADER: ${{ secrets.YOUTH_HEADER }}
-          YOUTH_ARTBODY: ${{ secrets.YOUTH_ARTBODY }}
-          YOUTH_REDBODY: ${{ secrets.YOUTH_REDBODY }}
-          YOUTH_TIME: ${{ secrets.YOUTH_TIME }}
           YOUTH_NOTIFY_CONTROL: ${{ secrets.YOUTH_NOTIFY_CONTROL }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
