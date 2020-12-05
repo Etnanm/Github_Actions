@@ -27,7 +27,7 @@ jobs:
         run: |
           cd ~/Scripts
           pip install -r ./requirements.txt 
-      - name: '运行【企鹅读书】py' 
+      - name: '运行【企鹅读书】py1' 
         run: |
           cd ~/Scripts
           python3 scripts/qq_read.py 
