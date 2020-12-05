@@ -40,8 +40,8 @@ jobs:
           cd ~/Self
           node Scripts/qeyd_replace.js
         env:
-          COOKIE_QEYD: ${{ secrets.QQREAD_COOKIE }}
           SYNCURL: https://raw.githubusercontent.com/ziye12/JavaScript/master/qqread.js
+          COOKIE_QEYD: ${{ secrets.QQREAD_COOKIE }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           BARK_SOUND: ${{ secrets.BARK_SOUND }}
